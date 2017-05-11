@@ -13,10 +13,10 @@ export const searchTextReducer = (state = '', action) => {
 
 export const showCompletedReducer = (state = false, action) => {
   switch (action.type) {
-  case 'TOGGLE_SHOW_COMPLETED':
-    return !action.showCompleted;
-  default:
-    return state;
+    case 'TOGGLE_SHOW_COMPLETED':
+      return !action.showCompleted;
+    default:
+      return state;
   }
 };
 
@@ -42,7 +42,9 @@ export const todosReducer = (state = [], action) => {
           completed: nextCompleted,
           completedAt: nextCompleted ? moment().unix() : undefined
         };
-      };
+      } else {
+        return todo;
+      }
     });
 
 
