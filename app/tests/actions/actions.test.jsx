@@ -25,7 +25,7 @@ describe('Actions', () => {
 
   it('should generate show completed todos action', () => {
     let action = {
-      type: 'SHOW_COMPLETED',
+      type: 'TOGGLE_SHOW_COMPLETED',
     };
     let res = actions.showCompleted();
     expect(res).toEqual(action);

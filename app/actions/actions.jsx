@@ -15,7 +15,7 @@ export const addTodo = (text) => {
 
 export const showCompleted = () => {
   return {
-    type: 'SHOW_COMPLETED',
+    type: 'TOGGLE_SHOW_COMPLETED',
   };
 };
 
