@@ -28015,13 +28015,18 @@
 
 	'use strict';
 
+	var _TodoList = __webpack_require__(444);
+
+	var _TodoList2 = _interopRequireDefault(_TodoList);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	var React = __webpack_require__(8);
 	var uuid = __webpack_require__(266);
 	var moment = __webpack_require__(327);
 
-	var TodoList = __webpack_require__(444);
 	var AddTodo = __webpack_require__(447);
 	var TodoSearch = __webpack_require__(448);
 	var TodoAPI = __webpack_require__(449);
@@ -28086,7 +28091,7 @@
 	            'div',
 	            { className: 'container' },
 	            React.createElement(TodoSearch, { onSearch: this.handleSearch }),
-	            React.createElement(TodoList, null),
+	            React.createElement(_TodoList2.default, null),
 	            React.createElement(AddTodo, { onAddTodo: this.handleAddTodo })
 	          )
 	        )
@@ -52300,15 +52305,25 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.TodoList = undefined;
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+	var _Todo = __webpack_require__(445);
+
+	var _Todo2 = _interopRequireDefault(_Todo);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var React = __webpack_require__(8);
-	var Todo = __webpack_require__(445).default;
 
 	var _require = __webpack_require__(229),
 	    connect = _require.connect;
 
-	var TodoList = React.createClass({
+	var TodoList = exports.TodoList = React.createClass({
 	  displayName: 'TodoList',
 
 	  render: function render() {
@@ -52325,7 +52340,7 @@
 	      }
 
 	      return todos.map(function (todo) {
-	        return React.createElement(Todo, _extends({ key: todo.id }, todo));
+	        return React.createElement(_Todo2.default, _extends({ key: todo.id }, todo));
 	      });
 	    };
 
@@ -52337,7 +52352,7 @@
 	  }
 	});
 
-	module.exports = connect(function (state) {
+	exports.default = connect(function (state) {
 	  return {
 	    todos: state.todos
 	  };

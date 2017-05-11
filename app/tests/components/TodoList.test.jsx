@@ -4,7 +4,7 @@ const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
 const $ = require('jquery');
 
-const TodoList = require('TodoList');
+import ConnectedTodoList, {TodoList} from 'TodoList';
 const Todo = require('Todo');
 
 
