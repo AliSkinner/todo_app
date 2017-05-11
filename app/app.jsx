@@ -12,7 +12,7 @@ store.subscribe(() => {
 })
 
 store.dispatch(actions.addTodo('walk dog'))
-// store.dispatch(actions.setSearchText('blah'))
+store.dispatch(actions.setSearchText('blah'))
 // store.dispatch(actions.toggleTodo(1))
 
 

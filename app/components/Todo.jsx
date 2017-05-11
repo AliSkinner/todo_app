@@ -4,7 +4,7 @@ const {connect} = require('react-redux');
 
 const actions = require('actions');
 
-const Todo = React.createClass({
+export const Todo = React.createClass({
 
   render: function() {
     let {id, text, completed, createdAt, completedAt, dispatch} = this.props;
@@ -37,4 +37,5 @@ const Todo = React.createClass({
   }
 });
 
-module.exports = connect()(Todo);
+export default connect()(Todo);
+// module.exports = connect()(Todo);

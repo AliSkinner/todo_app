@@ -115,7 +115,7 @@
 	});
 
 	store.dispatch(actions.addTodo('walk dog'));
-	// store.dispatch(actions.setSearchText('blah'))
+	store.dispatch(actions.setSearchText('blah'));
 	// store.dispatch(actions.toggleTodo(1))
 
 
@@ -52303,7 +52303,7 @@
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var React = __webpack_require__(8);
-	var Todo = __webpack_require__(445);
+	var Todo = __webpack_require__(445).default;
 
 	var _require = __webpack_require__(229),
 	    connect = _require.connect;
@@ -52349,6 +52349,9 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	var React = __webpack_require__(8);
 	var moment = __webpack_require__(327);
 
@@ -52357,7 +52360,7 @@
 
 	var actions = __webpack_require__(446);
 
-	var Todo = React.createClass({
+	var Todo = exports.Todo = React.createClass({
 	  displayName: 'Todo',
 
 
@@ -52411,7 +52414,8 @@
 	  }
 	});
 
-	module.exports = connect()(Todo);
+	exports.default = connect()(Todo);
+	// module.exports = connect()(Todo);
 
 /***/ }),
 /* 446 */
@@ -52614,7 +52618,7 @@
 	  });
 
 	  var store = redux.createStore(reducer, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
-	    return f();
+	    return f;
 	  }));
 
 	  return store;

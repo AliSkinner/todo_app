@@ -1,5 +1,5 @@
 const React = require('react');
-const Todo = require('Todo');
+const Todo = require('Todo').default;
 const {connect} = require('react-redux');
 
 const TodoList = React.createClass({
