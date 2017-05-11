@@ -5,7 +5,6 @@ export const setSearchText = (searchText) => {
   };
 };
 
-
 export const addTodo = (text) => {
   return {
     type: 'ADD_TODO',
@@ -13,7 +12,7 @@ export const addTodo = (text) => {
   };
 };
 
-export const showCompleted = () => {
+export const toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED',
   };
