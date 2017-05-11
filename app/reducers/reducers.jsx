@@ -14,7 +14,7 @@ export const searchTextReducer = (state = '', action) => {
 export const showCompletedReducer = (state = false, action) => {
   switch (action.type) {
     case 'TOGGLE_SHOW_COMPLETED':
-      return !action.showCompleted;
+      return !state;
     default:
       return state;
   }
