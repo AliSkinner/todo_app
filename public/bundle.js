@@ -52626,13 +52626,15 @@
 	    todosReducer = _require.todosReducer;
 
 	var configure = exports.configure = function configure() {
+	  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
 	  var reducer = redux.combineReducers({
 	    searchText: searchTextReducer,
 	    showCompleted: showCompletedReducer,
 	    todos: todosReducer
 	  });
 
-	  var store = redux.createStore(reducer, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	  var store = redux.createStore(reducer, initialState, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	    return f;
 	  }));
 

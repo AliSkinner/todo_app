@@ -1,4 +1,5 @@
 const React = require('react');
+
 import Todo from 'Todo';
 const {connect} = require('react-redux');
 
