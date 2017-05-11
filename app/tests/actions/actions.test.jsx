@@ -40,4 +40,17 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+  it('should generate ADD_TODOS action', () => {
+    let todos = [
+      {text: 'some text'},
+      {text: 'some more text'}
+    ];
+    let action = {
+      type: 'ADD_TODOS',
+      todos
+    };
+    let res = actions.addTodos(todos);
+    expect(res).toEqual(action);
+  });
+
 });

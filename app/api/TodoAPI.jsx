@@ -30,6 +30,7 @@ module.exports = {
     });
 
     filteredTodos = filteredTodos.filter((todo) => {
+      console.log('todo', todo)
       let text = todo.text.toLowerCase();
       return searchText.length === 0 || text.indexOf(searchText) !== -1;
     });

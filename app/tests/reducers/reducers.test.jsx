@@ -61,6 +61,19 @@ describe('Reducers', () => {
 
     });
 
+    it('should add existing todos', () => {
+      let todos = [
+        {text: 'some text'},
+        {text: 'some more text'}
+      ];
+      let action = {
+        type: 'ADD_TODOS',
+        todos
+      };
+      let res = reducers.todosReducer(df([]), df(action))
+      expect(res).toEqual(todos);
+    });
+
   });
 
 });
