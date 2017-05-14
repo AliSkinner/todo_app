@@ -124,6 +124,26 @@ describe('Actions', () => {
       }, done)
 
     })
+  });
+
+  describe('Auth actions', () => {
+
+    it('should return LOGIN action', () => {
+      let uid = 123;
+      let action = {
+        type: 'LOGIN',
+        uid
+      };
+      let res = actions.login(uid);
+      console.log(res)
+      expect(res.type).toEqual('LOGIN');
+      expect(res.uid).toEqual(uid);
+    });
+
+    it('should return LOGOUT action', () => {
+      let res = actions.logout();
+      expect(res.type).toEqual('LOGOUT');
+    });
 
   });
 

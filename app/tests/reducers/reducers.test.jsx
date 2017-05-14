@@ -81,4 +81,24 @@ describe('Reducers', () => {
 
   });
 
+  describe('authReducer', () => {
+    it('should set uid on state.auth', () => {
+      let action = {
+        type: 'LOGIN',
+        uid: 123
+      };
+      let res = reducers.authReducer(df({}), df(action))
+      expect(res.auth.uid).toEqual(action.uid);
+    });
+
+    it('should clear uid on state.auth', () => {
+      let action = {
+        type: 'LOGOUT',
+      };
+      let res = reducers.authReducer(df({}), df(action))
+      expect(res.auth).toExcludeKey('uid');
+    });
+
+  });
+
 });
