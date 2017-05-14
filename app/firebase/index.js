@@ -1,7 +1,5 @@
 import firebase from 'firebase';
 
-console.log('firebase pre', process.env)
-debugger
 try {
   var config = {
     apiKey: process.env.API_KEY,
@@ -9,7 +7,6 @@ try {
     databaseURL: process.env.DATABASE_URL,
     storageBucket: process.env.STORAGE_BUCKET,
   };
-  console.log('firebase post', process.env)
   firebase.initializeApp(config);
 
 } catch (e) {

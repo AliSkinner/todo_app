@@ -6,8 +6,6 @@ import TodoList from 'TodoList'
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 
-
-
 const TodoApp = React.createClass({
 
   render: function() {
