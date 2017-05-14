@@ -1,12 +1,21 @@
-const React = require('react');
+import React from 'react';
 const ReactDOM = require('react-dom');
-const {Route, Router, IndexRoute, hashHistory} = require('react-router');
+const {hashHistory} = require('react-router');
 const {Provider} = require('react-redux');
 
-const TodoApp = require('TodoApp');
 const actions = require('actions');
 const store = require('configureStore').configure();
-const TodoAPI = require('TodoAPI');
+import firebase from 'app/firebase';
+import router from 'app/router/';
+
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    hashHistory.push('/todos');
+  } else {
+    hashHistory.push('/');
+  }
+});
 
 store.dispatch(actions.startAddTodos());
 
@@ -18,7 +27,7 @@ require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
   <Provider store={store}>
-    <TodoApp />
+    {router}
   </Provider>,
   document.getElementById('app')
 );

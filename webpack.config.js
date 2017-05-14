@@ -3,15 +3,12 @@ const path = require('path');
 const envFile = require('node-env-file');
 
 process.env.NODE_ENV =  process.env.NODE_ENV || 'development';
-console.log(path.join(__dirname, 'config/' + process.env.NODE_ENV + '.env'))
 
 try {
   envFile(path.join(__dirname, 'app/config/' + process.env.NODE_ENV + '.env'))
 } catch (e) {
 
 }
-console.log('webpack',process.env)
-
 
 module.exports = {
   entry: [
@@ -27,11 +24,11 @@ module.exports = {
       '$': 'jquery',
       'jquery': 'jquery'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compressor: {
+    //     warnings: false
+    //   }
+    // }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
@@ -80,5 +77,5 @@ module.exports = {
       path.resolve(__dirname, 'node_modules/foundation-sites/scss')
     ]
   },
-  devTool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
+  // devTool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
 };
