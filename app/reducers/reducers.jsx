@@ -52,16 +52,10 @@ export const authReducer = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
-        ...state,
-        auth: {
-          uid: action.uid
-        }
+        uid: action.uid
       };
     case 'LOGOUT':
-      return {
-        ...state,
-        auth: {}
-      };
+      return {};
     default:
       return state;
   };
