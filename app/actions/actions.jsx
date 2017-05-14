@@ -1,3 +1,6 @@
+import firebase, {firebaseRef} from 'app/firebase';
+import moment from 'moment';
+
 export const setSearchText = (searchText) => {
   return {
     type: 'SET_SEARCH_TEXT',
@@ -5,10 +8,10 @@ export const setSearchText = (searchText) => {
   };
 };
 
-export const addTodo = (text) => {
+export const addTodo = (todo) => {
   return {
     type: 'ADD_TODO',
-    text
+    todo
   };
 };
 
@@ -25,9 +28,43 @@ export const toggleShowCompleted = () => {
   };
 };
 
-export const toggleTodo = (id) => {
+export const updateTodo = (id, updates) => {
   return {
-    type: 'TOGGLE_TODO',
-    id
+    type: 'UPDATE_TODO',
+    id,
+    updates
   };
 };
+
+export const startAddTodo = (text) => {
+  return (dispatch, getState) => {
+    let todo = {
+      text,
+      completed: false,
+      createdAt: moment().unix(),
+      completedAt: null
+    }
+    let todoRef = firebaseRef.child('todos').push(todo);
+    return todoRef.then(() => {
+      dispatch(addTodo({
+        ...todo,
+        id: todoRef.key
+      }));
+    });
+  };
+};
+
+export const startToggleTodo = (id, completed) => {
+  console.log(id, completed)
+  return (dispatch, getState) => {
+    let todoRef = firebaseRef.child(`todos/${id}`);
+    let updates = {
+      completed,
+      completedAt: completed ? moment().unix() : null
+    };
+
+    return todoRef.update(updates).then(() => {
+      dispatch(updateTodo(id, updates))
+    })
+  }
+}

@@ -1,6 +1,6 @@
 const uuid = require('node-uuid');
 const moment = require('moment');
-
+// import * as actions from 'actions';
 
 export const searchTextReducer = (state = '', action) => {
   switch (action.type) {
@@ -25,29 +25,20 @@ export const todosReducer = (state = [], action) => {
     case 'ADD_TODO':
       return [
         ...state,
-        {
-          id: uuid(),
-          text: action.text,
-          completed: false,
-          createdAt: moment().unix(),
-          completedAt: undefined
-        }
+        action.todo
       ];
-    case 'TOGGLE_TODO':
+    case 'UPDATE_TODO':
       return state.map((todo) => {
       if (todo.id === action.id) {
-          let nextCompleted = !todo.completed;
           return {
             ...todo,
-            completed: nextCompleted,
-            completedAt: nextCompleted ? moment().unix() : undefined
-          };
+            ...action.updates
+          }
         } else {
           return todo;
         }
       });
     case 'ADD_TODOS':
-    // console.log()
       return [
         ...state,
         ...action.todos
