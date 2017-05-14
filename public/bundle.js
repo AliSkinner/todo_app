@@ -111,15 +111,7 @@
 	var store = __webpack_require__(423).configure();
 	var TodoAPI = __webpack_require__(397);
 
-	store.subscribe(function () {
-	  var state = store.getState();
-	  console.log('new state: ', state);
-	  TodoAPI.setTodos(state.todos);
-	});
-
-	var initialTodos = TodoAPI.getTodos();
-	console.log('initialTodos', initialTodos);
-	store.dispatch(actions.addTodos(initialTodos));
+	store.dispatch(actions.startAddTodos());
 
 	// load foundation
 	$(document).foundation();
@@ -28094,9 +28086,10 @@
 	        searchText = _props.searchText,
 	        showCompleted = _props.showCompleted;
 
+	    var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
 	    var renderTodos = function renderTodos() {
-	      if (todos.length === 0) {
+	      if (filteredTodos.length === 0) {
 	        return React.createElement(
 	          'p',
 	          { className: 'container__message' },
@@ -28104,7 +28097,7 @@
 	        );
 	      }
 
-	      return TodoAPI.filterTodos(todos, showCompleted, searchText).map(function (todo) {
+	      return filteredTodos.map(function (todo) {
 	        return React.createElement(_Todo2.default, _extends({ key: todo.id }, todo));
 	      });
 	    };
@@ -44005,7 +43998,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.startToggleTodo = exports.startAddTodo = exports.updateTodo = exports.toggleShowCompleted = exports.addTodos = exports.addTodo = exports.setSearchText = undefined;
+	exports.startAddTodos = exports.startToggleTodo = exports.startAddTodo = exports.updateTodo = exports.toggleShowCompleted = exports.addTodos = exports.addTodo = exports.setSearchText = undefined;
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -44072,7 +44065,6 @@
 	};
 
 	var startToggleTodo = exports.startToggleTodo = function startToggleTodo(id, completed) {
-	  console.log(id, completed);
 	  return function (dispatch, getState) {
 	    var todoRef = _firebase.firebaseRef.child('todos/' + id);
 	    var updates = {
@@ -44082,6 +44074,22 @@
 
 	    return todoRef.update(updates).then(function () {
 	      dispatch(updateTodo(id, updates));
+	    });
+	  };
+	};
+
+	var startAddTodos = exports.startAddTodos = function startAddTodos() {
+	  return function (dispatch, getState) {
+	    var todosRef = _firebase.firebaseRef.child('todos');
+	    return todosRef.once('value').then(function (snapshot) {
+	      var todos = snapshot.val() || {};
+	      var parsedTodos = [];
+	      Object.keys(todos).forEach(function (todoId) {
+	        parsedTodos.push(_extends({
+	          id: todoId
+	        }, todos[todoId]));
+	      });
+	      dispatch(addTodos(parsedTodos));
 	    });
 	  };
 	};
@@ -44894,24 +44902,6 @@
 	var $ = __webpack_require__(7);
 
 	module.exports = {
-
-	  setTodos: function setTodos(todos) {
-	    if ($.isArray(todos)) {
-	      localStorage.setItem('todos', JSON.stringify(todos));
-	      return todos;
-	    }
-	  },
-
-	  getTodos: function getTodos() {
-	    var stringTodos = localStorage.getItem('todos');
-	    var todos = [];
-
-	    try {
-	      todos = JSON.parse(stringTodos);
-	    } catch (e) {}
-
-	    return $.isArray(todos) ? todos : [];
-	  },
 
 	  filterTodos: function filterTodos(todos, showCompleted, searchText) {
 	    var filteredTodos = todos;
