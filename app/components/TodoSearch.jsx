@@ -17,7 +17,7 @@ export class TodoSearch extends React.Component {
         <div>
           <input type="search" ref="searchText" placeholder="search todos" value={searchText} onChange={() => {
             let searchText = this.refs.searchText.value;
-            dispatch(actions.setSearchText(searchText))
+            dispatch(actions.setSearchText(searchText));
           }}/>
         </div>
         <div>
@@ -31,13 +31,13 @@ export class TodoSearch extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default connect(
   (state) => {
     return {
       showCompleted: state.showCompleted,
       searchText: state.searchText
-    }
+    };
   }
 )(TodoSearch);

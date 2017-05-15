@@ -1,11 +1,12 @@
-const expect = require('expect');
-const React = require('react');
-const ReactDOM = require('react-dom');
-const TestUtils = require('react-addons-test-utils');
-const $ = require('jquery');
-const {Provider} = require('react-redux');
+import expect from 'expect';
+import $ from 'jquery';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 
 const configureStore = require('configureStore');
+
 import TodoList from 'TodoList';
 import {TodoApp} from 'TodoApp';
 
@@ -26,7 +27,5 @@ describe('TodoApp', () => {
     let todoApp = TestUtils.scryRenderedComponentsWithType(provider, TodoApp)[0];
     let todoList = TestUtils.scryRenderedComponentsWithType(todoApp, TodoList);
     expect(todoList.length).toEqual(1);
-
   });
-
 });

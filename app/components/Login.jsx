@@ -12,8 +12,8 @@ export class Login extends React.Component {
   }
 
   onLogin () {
-      let {dispatch} = this.props;
-      dispatch(actions.startLogin());
+    let {dispatch} = this.props;
+    dispatch(actions.startLogin());
   }
 
   render () {
@@ -31,8 +31,8 @@ export class Login extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default Redux.connect()(Login);

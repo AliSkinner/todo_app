@@ -1,6 +1,6 @@
-const expect = require('expect');
-const reducers = require('reducers');
-const df = require('deep-freeze-strict');
+import expect from 'expect';
+import * as reducers from 'reducers';
+import df from 'deep-freeze-strict';
 
 describe('Reducers', () => {
 
@@ -56,10 +56,8 @@ describe('Reducers', () => {
       ];
       let updates = {completed: false, completedAt: null};
       let action = {type: 'UPDATE_TODO', id: todos[1].id, updates};
-
-
       let res = reducers.todosReducer(df(todos), df(action));
-      console.log(res)
+
       expect(res[0].completed).toEqual(false);
       // expect(res[0].completedAt).toEqual(updates.completedAt);
       expect(res[0].text).toEqual(todos[0].text);
@@ -88,7 +86,7 @@ describe('Reducers', () => {
         type: 'LOGOUT',
         todos
       };
-      let res = reducers.todosReducer(df([]), df(action))
+      let res = reducers.todosReducer(df([]), df(action));
       expect(res.length).toEqual(0);
     });
 
@@ -100,7 +98,7 @@ describe('Reducers', () => {
         type: 'LOGIN',
         uid: 123
       };
-      let res = reducers.authReducer(df({}), df(action))
+      let res = reducers.authReducer(df({}), df(action));
       expect(res.uid).toEqual(action.uid);
     });
 
@@ -108,10 +106,9 @@ describe('Reducers', () => {
       let action = {
         type: 'LOGOUT',
       };
-      let res = reducers.authReducer(df({}), df(action))
+      let res = reducers.authReducer(df({}), df(action));
       expect(res).toExcludeKey('uid');
     });
-
   });
 
 });

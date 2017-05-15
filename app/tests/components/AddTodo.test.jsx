@@ -1,11 +1,12 @@
-const expect = require('expect');
-const React = require('react');
-const ReactDOM = require('react-dom');
-const TestUtils = require('react-addons-test-utils');
-const $ = require('jquery');
+import expect from 'expect';
+import $ from 'jquery';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
+
 import * as actions from 'actions';
 
-const {AddTodo} = require('AddTodo');
+import {AddTodo} from 'AddTodo';
 
 describe('Todo', () => {
 
@@ -15,7 +16,7 @@ describe('Todo', () => {
 
   it('should dispatch a todo when valid todo text', () => {
     let todoText = 'check mail';
-    let action = actions.startAddTodo(todoText)
+    let action = actions.startAddTodo(todoText);
     let spy = expect.createSpy();
     let addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
     let $el = $(ReactDOM.findDOMNode(addTodo));
@@ -39,5 +40,4 @@ describe('Todo', () => {
     expect(spy).toNotHaveBeenCalled();
 
   });
-
 });

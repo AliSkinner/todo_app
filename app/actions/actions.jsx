@@ -38,14 +38,16 @@ export const updateTodo = (id, updates) => {
 
 export const startAddTodo = (text) => {
   return (dispatch, getState) => {
+
     let todo = {
       text,
       completed: false,
       createdAt: moment().unix(),
       completedAt: null
-    }
+    };
     let uid = getState().auth.uid;
     let todoRef = firebaseRef.child(`users/${uid}/todos`).push(todo);
+
     return todoRef.then(() => {
       dispatch(addTodo({
         ...todo,
@@ -57,6 +59,7 @@ export const startAddTodo = (text) => {
 
 export const startToggleTodo = (id, completed) => {
   return (dispatch, getState) => {
+
     let uid = getState().auth.uid;
     let todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
     let updates = {
@@ -65,20 +68,22 @@ export const startToggleTodo = (id, completed) => {
     };
 
     return todoRef.update(updates).then(() => {
-      dispatch(updateTodo(id, updates))
-    })
-  }
-}
+      dispatch(updateTodo(id, updates));
+    });
+  };
+};
 
 export const startAddTodos = () => {
   return (dispatch, getState) => {
-    console.log('getState', getState())
+
     let uid = getState().auth.uid;
     let todosRef = firebaseRef.child(`users/${uid}/todos`);
 
     return todosRef.once('value').then((snapshot) => {
+
       let todos = snapshot.val() || {};
-      let parsedTodos = []
+      let parsedTodos = [];
+
       Object.keys(todos).forEach((todoId) => {
         parsedTodos.push({
           id: todoId,
@@ -86,9 +91,9 @@ export const startAddTodos = () => {
         });
       });
       dispatch(addTodos(parsedTodos));
-    })
-  }
-}
+    });
+  };
+};
 
 export const login = (uid) => {
   return {
@@ -100,12 +105,12 @@ export const login = (uid) => {
 export const startLogin = () => {
   return (dispatch, getState) => {
     return firebase.auth().signInWithPopup(githubProvider).then((res) => {
-      console.log('auth ok ', res)
+      console.log('auth ok ', res);
     }, (e) => {
-      console.log('auth error ', e)
-    })
-  }
-}
+      console.log('auth error ', e);
+    });
+  };
+};
 
 export const logout = () => {
   return {

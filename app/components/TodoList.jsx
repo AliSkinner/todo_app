@@ -17,9 +17,9 @@ export class TodoList extends React.Component {
 
     let renderTodos = () => {
       if (filteredTodos.length === 0) {
-          return (
-            <p className="container__message">Nothing to Do</p>
-          );
+        return (
+          <p className="container__message">Nothing to Do</p>
+        );
       }
 
       return filteredTodos.map((todo) => {
@@ -35,7 +35,7 @@ export class TodoList extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default connect(
   (state) => {

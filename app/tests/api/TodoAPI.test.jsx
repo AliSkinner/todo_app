@@ -1,7 +1,6 @@
-const expect = require('expect');
+import expect from 'expect';
 
-const TodoAPI = require('TodoAPI');
-
+import TodoAPI from 'TodoAPI';
 
 describe('TodoAPI', () => {
 
@@ -31,7 +30,7 @@ describe('TodoAPI', () => {
 
     it('should return all items if showCompleted is true', () => {
       let filteredTodos = TodoAPI.filterTodos(todos, true, '');
-      expect(filteredTodos.length).toBe(3)
+      expect(filteredTodos.length).toBe(3);
     });
 
     it('should return only non-completed items if showCompleted is false', () => {
@@ -58,5 +57,4 @@ describe('TodoAPI', () => {
     });
 
   });
-
 });

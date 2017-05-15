@@ -1,9 +1,9 @@
 import React from 'react';
-import * as Redux from 'react-redux'
+import * as Redux from 'react-redux';
 
 import * as actions from 'actions';
-import TodoList from 'TodoList'
 import AddTodo from 'AddTodo';
+import TodoList from 'TodoList';
 import TodoSearch from 'TodoSearch';
 
 export class TodoApp extends React.Component {
@@ -40,6 +40,6 @@ export class TodoApp extends React.Component {
     );
   }
 
-};
+}
 
 export default Redux.connect()(TodoApp);

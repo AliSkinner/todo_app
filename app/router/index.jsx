@@ -1,8 +1,10 @@
 import React from 'react';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+
+import firebase from 'app/firebase';
+
 import TodoApp from 'TodoApp';
 import Login from 'Login';
-import firebase from 'app/firebase';
 
 let requireLogin = (nextState, replace, next) => {
   if (!firebase.auth().currentUser) {
@@ -25,4 +27,4 @@ export default (
         <Route path="todos" component={TodoApp} onEnter={requireLogin}/>
       </Route>
     </Router>
-)
+);
